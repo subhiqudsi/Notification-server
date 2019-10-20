@@ -46,11 +46,11 @@ setInterval(() => {
 
 
 //return static page with websocket client
-app.get('/', function(req, res) {
+router.get('/', function(req, res) {
     res.sendFile(INDEX);
 });
 
-app.post('/send-Notification',(req,res)=>{
+router.post('/send-Notification',(req,res)=>{
     res.json(req.body)
 })
 
