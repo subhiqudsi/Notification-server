@@ -23,3 +23,14 @@ setInterval(() => {
     client.send(new Date().toTimeString());
   });
 }, 1000);
+
+server.post('/send_notification', (req, res) => {
+  console.log(req)
+  return res.send('Received a POST HTTP method');
+});
+
+// function send_to_channel(message,channel) {
+//   wss.clients.forEach((client) => {
+//     client.send()
+//   })
+// }
