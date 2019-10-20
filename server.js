@@ -11,7 +11,7 @@ const server = express().use((req, res) => {
 
   if (req.method =='POST') {
   console.log(req)
-  return res.send('Received a POST HTTP method');
+  return res.send(req);
 }
 else{
   res.sendFile(INDEX)
