@@ -51,7 +51,7 @@ app.get('/', function(req, res) {
 });
 
 app.post('/send-Notification',(req,res)=>{
-    res = req.body.json()
+    res.json(req.body)
 })
 
 //init Websocket ws and handle incoming connect requests
