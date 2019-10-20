@@ -4,7 +4,7 @@ const express = require('express');
 const SocketServer = require('ws').Server;
 const path = require('path');
 
-const PORT =  80;
+const PORT =  process.env.PORT || 80;
 const INDEX = path.join(__dirname, 'index.html');
 //init Express Router
 var router = express.Router();
