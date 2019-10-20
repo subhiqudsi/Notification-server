@@ -4,18 +4,17 @@ const express = require('express');
 const SocketServer = require('ws').Server;
 const path = require('path');
 
-const PORT = process.env.PORT || 3000;
+const PORT =  80;
 const INDEX = path.join(__dirname, 'index.html');
+//init Express Router
+var router = express.Router();
 
-const server = express().use((req, res) => {
 
-  if (req.method =='POST') {
-  console.log(req.body)
-  return res.send(req.body);
-}
-else{
-  res.sendFile(INDEX)
-  } }).listen(PORT, () => console.log(`Listening on ${ PORT }`));
+var connectedUsers = [];
+//init Express
+var app = express();
+
+const server =app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 // function send_to_channel(message,channel) {
 //   wss.clients.forEach((client) => {
@@ -35,3 +34,21 @@ setInterval(() => {
     client.send(new Date().toTimeString());
   });
 }, 1000);
+
+
+
+//return static page with websocket client
+app.get('/', function(req, res) {
+    res.sendFile(INDEX);
+});
+
+//init Websocket ws and handle incoming connect requests
+wss.on('connection', function connection(ws) {
+    console.log("connection ...");
+    //on connect message
+    ws.on('message', function incoming(message) {
+        console.log('received: %s', message);
+        connectedUsers.push(message);
+    });
+    ws.send('message from server at: ' + new Date());
+});
