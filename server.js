@@ -4,17 +4,25 @@ const express = require('express');
 const SocketServer = require('ws').Server;
 const path = require('path');
 
-const PORT =  process.env.PORT || 80;
+
 const INDEX = path.join(__dirname, 'index.html');
-//init Express Router
 var router = express.Router();
+var port = process.env.PORT || 3000;
+
+//default/test route
+router.get('/status', function(req, res) {
+    res.json({ status: 'App is running!' });
+});
+
+//connect path to router
 
 
 var connectedUsers = [];
 //init Express
 var app = express();
+app.use("/", router);
 
-const server =app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+const server =app.listen(port, () => console.log(`Listening on ${ port }`));
 
 // function send_to_channel(message,channel) {
 //   wss.clients.forEach((client) => {
@@ -41,6 +49,10 @@ setInterval(() => {
 app.get('/', function(req, res) {
     res.sendFile(INDEX);
 });
+
+app.post('/send-Notification',(req,res)=>{
+    res = req.body.json()
+})
 
 //init Websocket ws and handle incoming connect requests
 wss.on('connection', function connection(ws) {
