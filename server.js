@@ -7,12 +7,10 @@ const path = require('path');
 const PORT = process.env.PORT || 3000;
 const INDEX = path.join(__dirname, 'index.html');
 
-const server = express();
-
-server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+const server = express().listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 server.get('/',(req, res) => res.sendFile(INDEX) )
-const wss = new SocketServer({ server });
+const wss = new SocketServer({ server,path:'/ws' });
 
 wss.on('connection', (ws) => {
   console.log('Client connected');
