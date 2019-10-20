@@ -12,7 +12,7 @@ const server = express();
 server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 server.get('/',(req, res) => res.sendFile(INDEX) )
-const wss = new SocketServer({ server });
+const wss = new SocketServer({ server,path:'/ws' });
 
 wss.on('connection', (ws) => {
   console.log('Client connected');
