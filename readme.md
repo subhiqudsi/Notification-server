@@ -1,3 +1,3 @@
 # Node.js WebSocket Server
 
-Deployed : https://notifications-websocket-server.herokuapp.com/
+Demo : https://notifications-websocket-server.herokuapp.com/
