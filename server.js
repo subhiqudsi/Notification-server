@@ -10,7 +10,7 @@ const INDEX = path.join(__dirname, 'index.html');
 const server = express().use((req, res) => {
 
   if (req.method =='POST') {
-  console.log(req)
+  console.log(req.body)
   return res.send(req.body);
 }
 else{
